@@ -1,0 +1,17 @@
+<div class="container-fluid" style="background: #272727; box-shadow: 0px -7px 10px -9px rgba(0,0,0,0.5)">
+    <div class="container">
+        <div class="row">
+            <div class="d-none col-xl-12 d-xl-block col-lg-12 d-lg-block col-md-12 d-md-block" style="height: 46px; font-size: 18px; font-weight: bold;" >
+                {% for item in menu %}
+                    {% if item.id == url %}
+                        <div class="text" style="height: inherit; color: #96AAB9;  font-size: 26px; font-weight: lighter; display: inline-block; padding: 4px 10px 4px 10px;">
+                            <a>{{ item.category }}</a>
+                        </div>
+                    {% elseif item.id != url %}
+                        <div style="display: inline-block; padding: 4px 10px 4px 10px;"><a class="text" style="color: #faf6ea; text-decoration: none; font-size: 24px; font-weight: lighter;" href="{{ item.id }}">{{ item.category }}</a> </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

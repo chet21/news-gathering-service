@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Новини з усіх куточків України. Агрегатор новин, нейбільш авторитетних видавництв України"/>
+
+    <link rel="stylesheet" type="text/css" href="/src/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/style_xs.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {#<script src="http://malsup.github.com/min/jquery.form.min.js"></script>#}
+
+    <script type="text/javascript"> //<![CDATA[
+        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
+        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+        //]]>
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135204278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135204278-1');
+    </script>
+
+
+</head>
+<body>
+
+{% include 'modul/servises_top.html.twig' %}
+{% include 'modul/logo.html.twig' %}
+{#{% include 'modul/courses.html.twig' %}#}
+{% include 'modul/menu.html.twig' %}
+{% include 'modul/mobile_header.html.twig' %}
+
+
+
+{% block hot_news %}{% endblock %}
+
+
+                    {#CENTER CONTENT#}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-9 col-lg-9 col-md-9 col-sm-12">{% block cetegory_news %}{% endblock %} {% block one_news %}{% endblock %}</div>
+            <div class="d-none col-xl-3 d-xl-block col-lg-3 d-lg-block col-md-3 d-md-block right_block-block">
+                {% include 'modul/right_block.html.twig' %}
+                {% block right_block %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+                        {#FOOTER#}
+
+{% include 'modul/footer.html.twig' %}
+
+                    {#COPYWRITER#}
+
+{% include 'modul/copywriter.html.twig' %}
+
+<script src="/src/js/function.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2313537604380651",
+        enable_page_level_ads: true
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{% extends "index.html.twig" %}
+{% block title %}
+    Агрегатор новин України.
+{% endblock %}
+{% block hot_news %}
+
+    <div class="container-fluid" style="background: #314241; box-shadow: #314241 5px 0 5px">
+        <div class="container">
+            <div class="row" style="padding: 40px 0 40px 0">
+                {#<div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 imgN block_news-size-big" style="background: url({{ big_img_news.img }}) no-repeat center center / cover">#}
+                    {#<div class="block_news-pic-shadow"></div>#}
+                    {#<div class="block_news-pic-marker">{{ big_img_news.category_ua }}</div>#}
+                    {#<div class="block_news-pic-title"><a style="text-decoration: none; color: white;" href="/news/{{ big_img_news.num }}">{{ big_img_news.title_ua }}</a></div>#}
+                {#</div>#}
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="row ">
+                        {% for item in data %}
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 imgN block_news-size-small" style="background: url({{ item.news0img }}) no-repeat center center / cover">
+                                <div class="block_news-pic-shadow"></div>
+                                <div class="block_news-pic-marker text">{{ item.category0category }}</div>
+                                <div class="block_news-pic-title"><a class="text" style="text-decoration: none; color: white;" href="/news/{{ item.news0id }}">{{ item.news0title }}</a> </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block cetegory_news %}
+    {% for key,val in poligon %}
+        {% if val is not empty %}
+            <div class="row  category_news-block">
+                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-11 category_news-pic" style="background: url({{ val[0].news0img }});
+                                background-size: cover;
+                                background-position: center center;
+                                background-repeat: no-repeat">
+                            <div class="block_news-pic-marker text">{{ val[0].category0category }}</div>
+                            <div class="block_news-pic-shadow"></div>
+                            <div class="block_news-pic-title"><a class="link text" style="text-decoration: none; color: white" href="/news/{{ val[0].news0id }}">{{ val[0].news0title }}</a> </div>
+                        </div>
+                        {#<div class="col-11 category_news-title"></div>#}
+                        <div class="col-12 category_news-statistic">
+                            <div class="row">
+                                <div class="col-12 text" style="font-size: 14px">
+                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                        <img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Calendar.ico">
+                                        <span style="position: relative; top: 2px;">{{ val[0].news0time | date('d-m-y') }}</span>
+                                    </div>
+
+                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                        <img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Clock.ico">
+                                        <span style="position: relative; top: 2px;">{{ val[0].news0time | date('H:i') }}</span>
+                                    </div>
+
+                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                        <img width="15" height="15" src="/src/img/ico/Praveen-Minimal-Outline-View.ico">
+                                        <span style="position: relative; top: 2px;">{{ val[0].news0views }}</span>
+                                    </div>
+                                </div>
+                                {#<div class="col-6">#}
+                                    {#<img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Calendar.ico">#}
+                                    {#<span style="font-size: 13px">{{ val[0].news0time | date('d-m-y') }}</span>#}
+                                    {#&nbsp;#}
+                                    {#&nbsp;#}
+                                    {#<img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Clock.ico">#}
+                                    {#<span style="font-size: 13px">{{ val[0].news0time | date('H:i') }}</span>#}
+                                {#</div>#}
+                                {#<div class="col-2">#}
+                                    {#<img height="13" width="13" src="/src/img/ico/Praveen-Minimal-Outline-View.ico">#}
+                                    {#<span style="font-size: 13px">{{ val[0].news0views }}</span>#}
+                                {#</div>#}
+                                {#<div class="col-1">{{ val[0].donor0title }}</div>#}
+                            </div>
+                        </div>
+                        <div class="col-12 category_news-short text">
+                            <span style="font-size: 18px">{{ val[0].news0text | striptags | slice(0, 200) }}</span>...
+                            <div style="position: absolute; bottom: 0; height: 60px; width: inherit; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(247, 247, 247, 0.8))"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 category_news_rs-block">
+                    {% for k,i in val %}
+                        {% if k >= 1 %}
+                            <div class="row category_news_rs-item">
+                                <div class="col-3 category_news_rs-item-pic" style="background: url({{ i.news0img }}); background-position: center center; background-size: cover;"></div>
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-12 category_news_rs-item-title"><a class="category_news_rs-item-title text" style="text-decoration: none" href="/news/{{ i.news0id }}" >{{ i.news0title }}</a></div>
+                                        <div class="col-12 category_news_rs-item-statistic">
+                                            <div class="row">
+                                                <div class="col-12 text">
+                                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                                        <img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Calendar.ico">
+                                                        <span style="position: relative; top: 2px;">{{ i.news0time | date('d-m-y') }}</span>
+                                                    </div>
+
+                                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                                        <img height="13" width="13" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Clock.ico">
+                                                        <span style="position: relative; top: 2px;">{{ i.news0time | date('H:i') }}</span>
+                                                    </div>
+
+                                                    <div style="margin-left: 5px; margin-right: 5px; display: inline-block">
+                                                        <img width="15" height="15" src="/src/img/ico/Praveen-Minimal-Outline-View.ico">
+                                                        <span style="position: relative; top: 2px;">{{ i.news0views }}</span>
+                                                    </div>
+                                                </div>
+                                                {#<div class="col-5">#}
+                                                    {#<img class="category_news_rs-item-ico" src="/src/img/ico/Icons8-Ios7-Time-And-Date-Clock.ico">#}
+                                                    {#{{ i.news0time | date('H:i' ) }}#}
+                                                {#</div>#}
+                                                {#<div class="col-3">#}
+                                                    {#<img class="category_news_rs-item-ico" src="/src/img/ico/Praveen-Minimal-Outline-View.ico">#}
+                                                    {#{{ i.news0views }}#}
+                                                {#</div>#}
+                                                {#<div class="col-4">#}
+                                                    {#<img class="category_news_rs-item-ico" src="/src/img/ico/Iconsmind-Outline-Globe.ico">#}
+                                                    {#{{ i.donor0title }}#}
+                                                {#</div>#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block right_block %}
+    {#{% if npn not empty %}#}
+        {% for item in npn %}
+            <div class="row" style="margin-top: 10px; margin-bottom: 10px; color: #747474;">
+                <div class="col-2 text" style="font-weight: bold">{{ item.news0time|date("H:i") }}</div>
+                <div class="col-10 text" style=" line-height: 18px">
+                    <a href="/news/{{ item.news0id }}" class="link" style="color: #747474; text-decoration: none;  ">{{ item.news0title }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    {#{% endif %}#}
+{% endblock %}

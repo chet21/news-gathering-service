@@ -1,0 +1,16 @@
+<div class="container-fluid" style="background: white;height: 30px;">
+   <div class="container">
+       <div class="row">
+           <div id="bank">
+               {% for item in bank %}
+                   <span style="font-weight: bold">{{ item.ccy }}</span>
+                   <img width="20" height="20" src="/src/img/ico/coin/{{ item.ccy }}.ico" alt="">
+                   <span>{{ item.buy | round (2) }}</span>
+                   <span> / </span>
+                   <span>{{ item.sale | round (2) }}</span>
+               {% endfor %}
+
+           </div>
+       </div>
+   </div>
+</div>
