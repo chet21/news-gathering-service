@@ -10,10 +10,6 @@ namespace App\Controllers;
 
 class BaseUserController extends BaseController
 {
-    protected $login;
-    protected $hash;
-    protected $role;
-
     public function __construct()
     {
         parent::__construct();

@@ -32,7 +32,11 @@ abstract class BaseController
         $this->twig->addG('opt', $this->options->param);
         $this->twig->addG('menu', $this->options->site_top_menu('ua'));
         $this->twig->addG('url', $this->options->current_url());
-        $this->twig->addG('bank', PrivatBank::er());
+
+        if($this->user_id['user0id']){
+            $this->twig->addG('user', $this->user_id);
+            $this->twig->addG('csrf', CSRF::token($this->user_id['verification0hash']));
+        }
 
         if($_SERVER['REMOTE_ADDR'] != '127.0.0.1'){
             $this->twig->addG('location', $this->location->getCity());
