@@ -18,11 +18,20 @@ class BaseConfiguration
 
     static public function get($key)
     {
-        foreach (self::$data as $k => $v){
-            if($k == $key){
-                $res = $v;
-            }
-        }
+//        foreach (self::$data as $k => $v){
+//            if($k == $key){
+//                $res = $v;
+//            }
+//        }
+//        return $res;
+
+//        if(!empty(self::$data[$key])){
+//            $res = self::$data[$key];
+//        }else{
+//            throw new \Exception('This key not exist, on cofiguration file');
+//        }
+
+        $res = self::$data[$key];
         return $res;
     }
 
