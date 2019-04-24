@@ -14,8 +14,6 @@ class BaseIndexController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        if($this->user_id){
-            header('location: /dashboard');
-        }
+
     }
 }

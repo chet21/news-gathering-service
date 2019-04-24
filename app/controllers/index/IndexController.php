@@ -44,6 +44,7 @@ class IndexController extends BaseIndexController
         $not_photo_news->select('', '');
         $not_photo_news->where('img = \'\'');
         $not_photo_news->limit(20);
+        $not_photo_news->sort(ORM::SORT_DESC);
         $not_photo_news = $not_photo_news->run();
 
 
