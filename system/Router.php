@@ -2,7 +2,7 @@
 
 namespace System;
 
-use App\Controllers\HttpController;
+use App\Controllers;
 use System\Error;
 
 class Router

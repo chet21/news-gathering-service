@@ -1,5 +1,14 @@
 User-agent: Yandex
-Disallow: /
+Disallow: /admin
+Disallow: /enter
+Disallow: /category
+Allow: /
+Allow: /news
+
 
 User-agent: *
-Disallow: /
+Disallow: /admin
+Disallow: /enter
+Disallow: /category
+Allow: /
+Allow: /news
