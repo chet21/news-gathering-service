@@ -2,6 +2,7 @@ User-agent: Yandex
 Disallow: /admin
 Disallow: /enter
 Disallow: /category
+Disallow: /test
 Allow: /
 Allow: /news
 
@@ -10,5 +11,6 @@ User-agent: *
 Disallow: /admin
 Disallow: /enter
 Disallow: /category
+Disallow: /test
 Allow: /
 Allow: /news
