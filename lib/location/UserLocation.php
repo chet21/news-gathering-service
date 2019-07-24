@@ -42,9 +42,9 @@ class UserLocation
         return $city_id->city->id;
     }
 
-    private function response_obj()
+    public function response_obj()
     {
-        $http = 'https://api.sypexgeo.net/json/'.$this->ip;
+        $http = 'https://api.sypexgeo.net/tT1BT/json/'.$this->ip;
         $data = file_get_contents($http);
         $obj = json_decode($data);
 

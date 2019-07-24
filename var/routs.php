@@ -9,6 +9,7 @@ return array(
     // перегляд новин
     'news/([0-9]+)' => 'news/one/$1',
     'category/([a-z]+)' => 'category/category/$1',
+    'category/([a-z]+)/([0-9]+)' => 'category/category/$1/$2',
 
     // default
     '' => 'index/index',
@@ -20,6 +21,7 @@ return array(
     //test
     'test' => 'test/index',
     'test/(\d{2}-\d{2}-\d{2})' => 'test/index/$1',
+    'x' => 'test/x',
 
     // Search
 

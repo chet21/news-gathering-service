@@ -22,7 +22,6 @@ error_reporting(E_ALL);
 
 BaseConfiguration::load(__DIR__.'/../var/config.php');
 
-
 $start = new Router();
 $start->Run();
 

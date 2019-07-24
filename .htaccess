@@ -4,3 +4,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^$ src/ [L]
 RewriteRule (.*) src/$1 [L]
+
+RemoveHandler .html .htm
+AddType application/x-httpd-php .php .htm .html .phtml

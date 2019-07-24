@@ -47,6 +47,7 @@ class NewsController extends BaseIndexController
 
 
 
+
 //        if(count($this->news->run()) === 0){
 //            $this->news->select();
 //            $this->news->where('id > '.($id[0]).' && id_category = '.$this->news->wrap_string($news[0]['id_category']));

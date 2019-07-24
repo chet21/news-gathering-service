@@ -1,2 +1,55 @@
 {% extends "index.html.twig" %}
+{% block cetegory_news %}
+    <h1 style="margin-top: 10px">{{ news[0]['category0category']}}</h1>
+
+    <div class="container-fluid" style="background: #314241; box-shadow: #314241 5px 0 5px">
+        <div class="container-fluid">
+
+            <div class="row" style="margin-top: 30px; padding: 40px 0 40px 0">
+                {% for item in news %}
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 imgN block_news-size-big" style="height: 220px; background: url({{ item.news0img }}) no-repeat center center / cover">
+                        <div class="block_news-pic-shadow"></div>
+                        <div class="block_news-pic-marker">{{ big_img_news.category_ua }}</div>
+                        <div class="block_news-pic-title"><a style="text-decoration: none; color: white;" href="/news/{{ item.news0id }}">{{ item.news0title }}</a></div>
+                    </div>
+                {% endfor %}
+                {#<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">#}
+                    {#<div class="row ">#}
+                        {#{% for item in news %}#}
+                            {#<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 imgN block_news-size-small" style="background: url({{ item.news0img }}) no-repeat center center / cover">#}
+                                {#<div class="block_news-pic-shadow"></div>#}
+                                {#<div class="block_news-pic-marker text">{{ item.category0category }}</div>#}
+                                {#<div class="block_news-pic-title"><a class="text" style="text-decoration: none; color: white;" href="/news/{{ item.news0id }}">{{ item.news0title }}</a> </div>#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5 align-self-center">
+                    {% set category = url | split('/') %}
+                    {% set middle =  pagination.position %}
+                    {% set middle_after = pagination.position + 4 %}
+                        {% if pagination.position <=5  %}
+                            {% for i in 1..6 %}
+                                <a href="/{{ category[1] }}/{{ category[2] }}/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                        {% elseif pagination.position >5 %}
+                            <a href="/{{ category[1] }}/{{ category[2] }}/{{ pagination.position - 1 }}"><<</a>
+                            <a href="/{{ category[1] }}/{{ category[2] }}/1">1</a>
+                            <a href="/{{ category[1] }}/{{ category[2] }}/2">2</a>
+                            ...
+                            {% for i in middle..middle_after %}
+                                <a href="/{{ category[1] }}/{{ category[2] }}/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                            ...
+                            <a href="/{{ category[1] }}/{{ category[2] }}/{{ pagination.pagination_count - 1 }}">{{ pagination.pagination_count - 1 }}</a>
+                            <a href="/{{ category[1] }}/{{ category[2] }}/{{ pagination.pagination_count - 1 }}">{{ pagination.pagination_count - 1 }}</a>
+                            <a href="/{{ category[1] }}/{{ category[2] }}/{{ pagination.position + 1 }}">>></a>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
