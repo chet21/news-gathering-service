@@ -124,12 +124,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "5d37a3260a8bd873b09cfc8355ae953557466d6e"
+                "reference": "8c4b748f23cf012841a77093e91e178102e119f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5d37a3260a8bd873b09cfc8355ae953557466d6e",
-                "reference": "5d37a3260a8bd873b09cfc8355ae953557466d6e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8c4b748f23cf012841a77093e91e178102e119f0",
+                "reference": "8c4b748f23cf012841a77093e91e178102e119f0",
                 "shasum": ""
             },
             "require": {
@@ -139,12 +139,12 @@
             "require-dev": {
                 "psr/container": "^1.0",
                 "symfony/debug": "^2.7",
-                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+                "symfony/phpunit-bridge": "^3.4.19|^4.1.8|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.41-dev"
+                    "dev-master": "1.42-dev"
                 }
             },
             "autoload": {
@@ -182,7 +182,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-05-03T15:08:09+00:00"
+            "time": "2019-06-11T09:40:08+00:00"
         }
     ],
     "packages-dev": [],

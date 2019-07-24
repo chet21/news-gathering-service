@@ -29,9 +29,25 @@ class TestController extends BaseIndexController
             echo '<pre>';
             var_dump($x->get_log_by_data($data[0]));
             echo '</pre>';
+
+//            $file = file(__DIR__.'/../../../logs/host_logs/'.$data[0].'/log.txt');
+
+//            echo '<table>';
+//
+//            foreach ($file as $item){
+//                echo '<tr>';
+//                echo '<td>'.$item[].'</td>';
+//                echo '</tr>';
+//            }
             
         }else{
             $x->get_log_all();
         }
+    }
+
+    public function xAction()
+    {
+        $x = new UserLocation();
+        var_dump($x->response_obj());
     }
 }

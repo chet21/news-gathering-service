@@ -27,11 +27,23 @@ abstract class BaseController
         $this->lang = new Lang(__DIR__ . '/../../../var/lang/' .$this->options->current_lang().'.php');
         $this->location = new UserLocation();
 
+        global $sape;
+        if (!defined('_SAPE_USER')){
+            define('_SAPE_USER', 'c84f95c8152f1f2d3d24c1daca62ce04');
+        }
+        require_once(realpath($_SERVER['DOCUMENT_ROOT'].'/'._SAPE_USER.'/sape.php'));
+//        $o['force_show_code'] = true;
+        $sape = new \SAPE_client();
+//        var_dump($sape);
+
+
         $this->twig  = new TwigView();
         $this->twig->addG('ln', $this->lang->get_list());
         $this->twig->addG('opt', $this->options->param);
         $this->twig->addG('menu', $this->options->site_top_menu('ua'));
         $this->twig->addG('url', $this->options->current_url());
+        $this->twig->addG('sape_links', $sape->return_links(3));
+        $this->twig->addG('sape_rtb', $sape->return_teasers_block(451087));
 
         if($this->user_id['user0id']){
             $this->twig->addG('user', $this->user_id);

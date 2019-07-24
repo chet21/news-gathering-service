@@ -141,11 +141,15 @@ class ORM extends DB
         }
         return $res;
     }
-
-    public function limit($num = 0)
+    public function limit($num = 0, $offset = null )
     {
-        $q = ' LIMIT '.$num;
-        $this->query .= $q;
+        if(!$offset){
+            $q = ' LIMIT '.$num;
+            $this->query .= $q;
+        }else{
+            $q = ' LIMIT '.$num.' OFFSET '.$offset;
+            $this->query .= $q;
+        }
     }
 
     public function sort($metod){
@@ -158,9 +162,9 @@ class ORM extends DB
             }
         }else{
             if($metod == 'ask'){
-                $this->query .= ORM::SORT_ASK;
+                $this->query .= ' ORDER BY '.$this->table.'0id'.' ASC ';
             }elseif ($metod == 'desc'){
-                $this->query .= ORM::SORT_DESC;
+                $this->query .= ' ORDER BY '.$this->table.'0id'.' DESC ';
             }
         }
     }
@@ -179,6 +183,11 @@ class ORM extends DB
     public function order_by($param)
     {
         $this->query .= ' ORDER BY '.$param;
+    }
+
+    public function getCount()
+    {
+        $this->query = 'SELECT COUNT(*) as count FROM '.$this->table;
     }
 
 }

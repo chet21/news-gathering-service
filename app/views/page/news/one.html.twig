@@ -18,6 +18,11 @@
             {#{% endfor %}#}
         {#</div>#}
     {#</div>#}
+    {#<div class="row">#}
+        {#<div class="col-12">#}
+            {#{{ merch | raw }}#}
+        {#</div>#}
+    {#</div>#}
 
     <div class="row" style="margin-top: 40px">
         <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -58,11 +63,11 @@
                     <div class="col-12 news_one-img" style="background: url({{ news.news0img }}) no-repeat center center / cover"></div>
                 {% endif %}
                 <div class="col-12 news_one-text">{{ news.news0text | raw }}</div>
-                <div class="col-12 news_one-tag">
-                    {% for item in 0..3 %}
-                        <div style="display: inline-block; height: 20px; width: 40px; color: red;">tag</div>
-                    {% endfor %}
-                </div>
+                {#<div class="col-12 news_one-tag">#}
+                    {#{% for item in 0..3 %}#}
+                        {#<div style="display: inline-block; height: 20px; width: 40px; color: red;">tag</div>#}
+                    {#{% endfor %}#}
+                {#</div>#}
             </div>
             {#<div class="row">#}
                 {#{% for item in mirror %}#}
