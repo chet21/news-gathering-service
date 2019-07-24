@@ -176,8 +176,8 @@ class Zend_Json_Encoder
      * Recursively encodes each value of an array and returns a JSON encoded
      * array string.
      *
-     * Arrays are defined as integer-indexed arrays starting at index 0, where
-     * the last index is (count($array) -1); any deviation from that is
+     * Arrays are defined as integer-indexed arrays starting at pages 0, where
+     * the last pages is (count($array) -1); any deviation from that is
      * considered an associative array, and will be encoded as such.
      *
      * @param $array array

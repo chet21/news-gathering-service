@@ -496,7 +496,7 @@ class phpQueryObject
 	 * jQuery difference.
 	 *
 	 * @param int $index
-	 * @return array|string Returns string if $index != null
+	 * @return array|string Returns string if $pages != null
 	 * @todo implement callbacks
 	 * @todo return only arrays ?
 	 * @todo maybe other name...
@@ -523,7 +523,7 @@ class phpQueryObject
 	 * jQuery difference.
 	 *
 	 * @param int $index
-	 * @return array|string Returns string if $index != null
+	 * @return array|string Returns string if $pages != null
 	 * @todo implement callbacks
 	 * @todo return only arrays ?
 	 * @todo maybe other name...
@@ -1039,14 +1039,14 @@ class phpQueryObject
 					// nth-child(n+b) to nth-child(1n+b)
 				if ($param{0} == 'n')
 					$param = '1'.$param;
-				// :nth-child(index/even/odd/equation)
+				// :nth-child(pages/even/odd/equation)
 				if ($param == 'even' || $param == 'odd')
 					$mapped = $this->map(
 						create_function('$node, $param',
-							'$index = pq($node)->prevAll()->size()+1;
-							if ($param == "even" && ($index%2) == 0)
+							'$pages = pq($node)->prevAll()->size()+1;
+							if ($param == "even" && ($pages%2) == 0)
 								return $node;
-							else if ($param == "odd" && $index%2 == 1)
+							else if ($param == "odd" && $pages%2 == 1)
 								return $node;
 							else
 								return null;'),
@@ -1057,7 +1057,7 @@ class phpQueryObject
 					$mapped = $this->map(
 						create_function('$node, $param',
 							'$prevs = pq($node)->prevAll()->size();
-							$index = 1+$prevs;
+							$pages = 1+$prevs;
 							$b = mb_strlen($param) > 3
 								? $param{3}
 								: 0;
@@ -1065,41 +1065,41 @@ class phpQueryObject
 							if ($b && $param{2} == "-")
 								$b = -$b;
 							if ($a > 0) {
-								return ($index-$b)%$a == 0
+								return ($pages-$b)%$a == 0
 									? $node
 									: null;
-								phpQuery::debug($a."*".floor($index/$a)."+$b-1 == ".($a*floor($index/$a)+$b-1)." ?= $prevs");
-								return $a*floor($index/$a)+$b-1 == $prevs
+								phpQuery::debug($a."*".floor($pages/$a)."+$b-1 == ".($a*floor($pages/$a)+$b-1)." ?= $prevs");
+								return $a*floor($pages/$a)+$b-1 == $prevs
 										? $node
 										: null;
 							} else if ($a == 0)
-								return $index == $b
+								return $pages == $b
 										? $node
 										: null;
 							else
 								// negative value
-								return $index <= $b
+								return $pages <= $b
 										? $node
 										: null;
 //							if (! $b)
-//								return $index%$a == 0
+//								return $pages%$a == 0
 //									? $node
 //									: null;
 //							else
-//								return ($index-$b)%$a == 0
+//								return ($pages-$b)%$a == 0
 //									? $node
 //									: null;
 							'),
 						new CallbackParam(), $param
 					);
 				else
-					// index
+					// pages
 					$mapped = $this->map(
-						create_function('$node, $index',
+						create_function('$node, $pages',
 							'$prevs = pq($node)->prevAll()->size();
-							if ($prevs && $prevs == $index-1)
+							if ($prevs && $prevs == $pages-1)
 								return $node;
-							else if (! $prevs && $index == 1)
+							else if (! $prevs && $pages == 1)
 								return $node;
 							else
 								return null;'),
@@ -1144,7 +1144,7 @@ class phpQueryObject
 	 * jQuery difference.
 	 *
 	 * Callback:
-	 * - $index int
+	 * - $pages int
 	 * - $node DOMNode
 	 *
 	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
@@ -2869,7 +2869,7 @@ class phpQueryObject
 	/**
 	 * Enter description here...
 	 *
-	 * @param array|string $callback Expects $node as first param, $index as second
+	 * @param array|string $callback Expects $node as first param, $pages as second
 	 * @param array $scope External variables passed to callback. Use compact('varName1', 'varName2'...) and extract($scope)
 	 * @param array $arg1 Will ba passed as third and futher args to callback.
 	 * @param array $arg2 Will ba passed as fourth and futher args to callback, and so on...

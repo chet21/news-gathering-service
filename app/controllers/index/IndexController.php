@@ -48,7 +48,7 @@ class IndexController extends BaseIndexController
         $not_photo_news = $not_photo_news->run();
 
 
-        echo $this->twig->render('index/index', array(
+        echo $this->twig->render('pages/pages', array(
             'data' => $res,
             'poligon' => $poligon,
             'npn' => $not_photo_news

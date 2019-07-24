@@ -51,8 +51,8 @@ class ComposerStaticInit5898b39126de691ffcf76a43f60c79e3
     );
 
     public static $classMap = array (
-        'AdminController' => __DIR__ . '/../..' . '/app/controllers/admin/AdminController.php',
         'App\\Configuration\\BaseConfiguration' => __DIR__ . '/../..' . '/app/configuration/BaseConfiguration.php',
+        'App\\Controllers\\AdminPageController' => __DIR__ . '/../..' . '/app/controllers/admin/index/AdminPageController.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseController.php',
         'App\\Controllers\\BaseIndexController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseIndexController.php',
         'App\\Controllers\\BaseSecureController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseSecureController.php',

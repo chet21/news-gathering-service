@@ -8,7 +8,7 @@ use \System\Statistics;
 session_start();
 
 //if(is_dir('/install')){
-//    require_once __DIR__.'/../install/index.php';
+//    require_once __DIR__.'/../install/pages.php';
 //}
 
 if($_COOKIE['lang'] == null){

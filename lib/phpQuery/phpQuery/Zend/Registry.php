@@ -132,9 +132,9 @@ class Zend_Registry extends ArrayObject
      * can be called statically.  In the latter case, it uses the default
      * static instance stored in the class.
      *
-     * @param string $index - get the value associated with $index
+     * @param string $index - get the value associated with $pages
      * @return mixed
-     * @throws Zend_Exception if no entry is registerd for $index.
+     * @throws Zend_Exception if no entry is registerd for $pages.
      */
     public static function get($index)
     {
@@ -167,8 +167,8 @@ class Zend_Registry extends ArrayObject
     }
 
     /**
-     * Returns TRUE if the $index is a named value in the registry,
-     * or FALSE if $index was not found in the registry.
+     * Returns TRUE if the $pages is a named value in the registry,
+     * or FALSE if $pages was not found in the registry.
      *
      * @param  string $index
      * @return boolean

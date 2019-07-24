@@ -6,9 +6,11 @@
  * Time: 7:45
  */
 
+namespace App\Controllers;
+
 use \System\CSRF;
 
-abstract class BaseAdminController extends \App\Controllers\BaseController
+abstract class BaseAdminController extends BaseController
 {
     public function __construct()
     {
@@ -18,7 +20,7 @@ abstract class BaseAdminController extends \App\Controllers\BaseController
         }
         if(!empty($_POST)){
             if($_POST['csrf'] !== CSRF::token($this->user_id['verification0hash'])){
-                throw new \Exception('You Bad Boy.');
+                throw new \Exception('You are Bad Boy.');
             }
         }
     }
