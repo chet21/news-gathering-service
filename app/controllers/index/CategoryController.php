@@ -22,7 +22,7 @@ class CategoryController extends BaseIndexController
     {
         $category = $id[0];
         $position = $id[1];
-        $posts_on_page = 40;
+        $posts_on_page = 42;
         $offset = 0;
         if($position){
             $offset = $posts_on_page*($position-1);

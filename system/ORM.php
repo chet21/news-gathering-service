@@ -68,7 +68,7 @@ class ORM extends DB
         }
     }
 
-    public function insert($param)
+    public function insert( array $param)
     {
         foreach ($param as $k => $item){
             $this->execute_param[':'.$k] = $item;

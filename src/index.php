@@ -26,4 +26,4 @@ $start = new Router();
 $start->Run();
 
 $stat = new Statistics();
-$stat->set_location();
+$stat->write_log_db();
