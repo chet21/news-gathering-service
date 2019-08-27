@@ -8,91 +8,66 @@
 
 namespace System;
 
-
 use Lib\Location\UserLocation;
 
 class Statistics
 {
     private $location;
     private $part;
+    private $db;
+    private $bot_status;
     private $bot_list = [
-            'rambler','googlebot','aport','yahoo','msnbot','turtle','mail.ru','omsktele',
-            'yetibot','picsearch','sape.bot','sape_context','gigabot','snapbot','alexa.com',
-            'megadownload.net','askpeter.info','igde.ru','ask.com','qwartabot','yanga.co.uk',
-            'scoutjet','similarpages','oozbot','shrinktheweb.com','aboutusbot','followsite.com',
-            'dataparksearch','google-sitemaps','appEngine-google','feedfetcher-google',
-            'liveinternet.ru','xml-sitemaps.com','agama','metadatalabs.com','h1.hrn.ru',
-            'googlealert.com','seo-rus.com','yaDirectBot','yandeG','yandex',
-            'yandexSomething','Copyscape.com','AdsBot-Google','domaintools.com',
-            'Nigma.ru','bing.com','dotnetdotcom'
+            'Googlebot','YandexBot', 'SemrushBot', 'Exabot'
     ];
-    private $bot_status = null;
 
     public function __construct()
     {
         $this->location = new UserLocation();
+        $this->db = new ORM('stat_request');
         $this->part = __DIR__.'/../logs/host_logs/';
-        $this->is_Bot();
+        $this->bot_status = 'not_bot '.$_SERVER['HTTP_USER_AGENT'];
+        $this->is_bot();
     }
 
-    public function set_location()
+    public function get_log_db($date = null)
     {
-        $city = $this->location->getCity('ru');
-        $string = 'IP - '.$this->location->ip.' CITY - '.$city.' TIME - '.date('H:i:s').' FROM -'.$_SERVER['HTTP_REFERER'].' TO - '.$_SERVER['REQUEST_URI'].', BOT_STATUS ='.$this->bot_status;
-        $this->write_log($string);
-
-    }
-
-    public function get_log_all($date_time = null)
-    {
-        $obj = scandir($this->part);
-        $file_logs = '';
-
-        foreach ($obj as $item){
-            if (is_dir($this->part.$item)) {//
-                if(preg_match('/^[0-9]+/', $item)){
-                    echo '<a href="/test/'.$item.'">'.$item.'</a>'.PHP_EOL;
-                }
+        if(!$date){
+            $date = date('Y-m-d');
+        }else{
+            if(!preg_match('/[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)){
+                throw new \Exception('DATE FORMAT FAILED, MUST BY LIKE - 1970-12-30');
             }
         }
-
-        return $file_logs;
+        $this->db->select();
+        $this->db->where('time >= \''.$date.' 00:00:00\' AND time <= NOW()');
+//        echo $this->db->query;
+        return $this->db->run();
     }
 
-    public function get_log_by_data($date_time)
+    public function write_log_db()
     {
-        if(!preg_match('/^\d{2}-\d{2}-\d{2}/', $date_time)){
-            throw new \Exception('Not valid data');
-        }
-        $obj = scandir($this->part);
 
-        if(in_array($date_time, $obj)){
-            return file_get_contents($this->part.$date_time.'/log.txt');
-        }else{
-            throw new \Exception('Date dont find');
-        }
+        $data = [
+            'ip' => $this->location->ip,
+            'city' => $this->location->getCity(),
+            'f' => ($_SERVER['HTTP_REFERER'] !== null) ? $_SERVER['HTTP_REFERER'] : 'undefined',
+            't' => $_SERVER['REQUEST_URI'],
+            'bot' => $this->bot_status
+        ];
+
+        $this->db->insert($data);
+        $this->db->run();
     }
 
-    private function write_log($data)
+    private function is_bot()
     {
-        $folder = $this->part.date('d-m-y');
-        $original_log = file_get_contents($folder.'/log.txt');
-        $mod_log = $original_log.PHP_EOL.$data;
+        $bot_status = null;
 
-        if (is_dir($folder)){
-            file_put_contents($folder.'/log.txt', $mod_log);
-        }else{
-            mkdir($folder);
-            file_put_contents($folder.'/log.txt', $mod_log);
-        }
-    }
-
-    private function is_Bot()
-    {
-        foreach($this->bot_list as $bot)
-            if(stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false){
-                $this->bot_status = 'is_bot';
+        foreach($this->bot_list as $item){
+            if(preg_match('/'.$item.'/', $_SERVER['HTTP_USER_AGENT'], $r)){
+                $this->bot_status = 'is_bot '. implode(' - ', $r);
+                break;
             }
-        $this->bot_status = ' not_bot '.$_SERVER['HTTP_USER_AGENT'];
+        }
     }
 }

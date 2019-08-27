@@ -7,10 +7,12 @@ use Helper\DayTranslate;
 class UserLocation
 {
     public $ip;
+    public $response_obj;
 
     public function __construct()
     {
         $this->ip = $_SERVER['REMOTE_ADDR'];
+        $this->response_obj = $this->response_obj();
 
     }
 
@@ -22,9 +24,13 @@ class UserLocation
 
     public function getTime()
     {
-        $time_stamp = $this->response_obj();
+        $server_lap = 3;
+        $zero_time_lap = time() - ($server_lap*60*60);
+        $user_tipe_lap = $zero_time_lap + ($this->response_obj->country->utc*60*60);
 
-        return $time_stamp->timestamp;
+
+//        return date('H:i', $user_tipe_lap);
+        return $user_tipe_lap;
     }
 
     public function getWeather()
@@ -42,7 +48,7 @@ class UserLocation
         return $city_id->city->id;
     }
 
-    public function response_obj()
+    private function response_obj()
     {
         $http = 'https://api.sypexgeo.net/tT1BT/json/'.$this->ip;
         $data = file_get_contents($http);
