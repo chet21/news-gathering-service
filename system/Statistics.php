@@ -17,7 +17,7 @@ class Statistics
     private $db;
     private $bot_status;
     private $bot_list = [
-            'Googlebot','YandexBot', 'SemrushBot', 'Exabot'
+            'Googlebot','YandexBot', 'SemrushBot', 'Exabot' , 'Trident'
     ];
 
     public function __construct()
@@ -39,7 +39,9 @@ class Statistics
             }
         }
         $this->db->select();
-        $this->db->where('time >= \''.$date.' 00:00:00\' AND time <= NOW()');
+//        $this->db->where('time >= \''.$date.' 00:00:00\' AND time <= NOW()');
+        $this->db->where('time >= \''.$date.' 00:00:00\' AND time <= \''.$date.' 23:59:59\'');
+
 //        echo $this->db->query;
         return $this->db->run();
     }

@@ -17,6 +17,28 @@ foreach ($obj->data as $item)
    }
 }
 
-$db->query = 'DELETE n1 FROM news n1, news n2 WHERE n1.id > n2.id AND n1.title_ua = n2.title_ua';
+$db->query = 'DELETE `a`.* FROM `news` as `a`,
+(SELECT
+`b`.`title_ua`, MIN(`b`.`id`) as `mid`
+FROM `news` as `b`
+GROUP BY `b`.`title_ua`
+ORDER BY `b`.`id` DESC
+LIMIT 0, 100
+) AS `c`
+WHERE
+`a`.`title_ua` = `c`.`title_ua`
+AND `a`.`id` > `c`.`mid`';
 $db->run();
 
+$db->query = 'DELETE `a`.* FROM `news` as `a`,
+(SELECT
+`b`.`img`, MIN(`b`.`id`) as `mid`
+FROM `news` as `b`
+GROUP BY `b`.`img`
+ORDER BY `b`.`id` DESC
+LIMIT 0, 100
+) AS `c`
+WHERE
+`a`.`img` = `c`.`img`
+AND `a`.`id` > `c`.`mid`';
+$db->run();

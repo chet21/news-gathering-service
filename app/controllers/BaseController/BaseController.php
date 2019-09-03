@@ -32,8 +32,8 @@ abstract class BaseController
             define('_SAPE_USER', 'c84f95c8152f1f2d3d24c1daca62ce04');
         }
         require_once(realpath($_SERVER['DOCUMENT_ROOT'].'/'._SAPE_USER.'/sape.php'));
-//        $o['force_show_code'] = true;
-        $sape = new \SAPE_client();
+        $o['charset'] = 'utf-8';
+        $sape = new \SAPE_client($o);
 //        var_dump($sape);
 
 
@@ -47,13 +47,12 @@ abstract class BaseController
 
         if($this->user_id['user0id']){
             $this->twig->addG('user', $this->user_id);
-            $this->twig->addG('csrf', CSRF::token($this->user_id['verification0hash']));
+            $this->twig->addG('csrf', CSRF::token());
         }
 
         if($_SERVER['REMOTE_ADDR'] != '127.0.0.1'){
             $this->twig->addG('location', $this->location->getCity());
             $this->twig->addG('time', $this->location->getTime());
-//            $this->twig->addG('day', );
             $this->twig->addG('weather', $this->location->getWeather());
         }
     }

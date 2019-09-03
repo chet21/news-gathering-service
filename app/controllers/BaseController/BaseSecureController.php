@@ -5,15 +5,15 @@ namespace App\Controllers;
 use System\Error;
 use Lib\User\User;
 
-class BaseSecureController
+class BaseSecureController extends BaseController
 {
     protected $user;
 
     public function __construct()
     {
-        if(!$_POST){
-            Error::E404();
+        parent::__construct();
+        if($_SESSION['user_id']){
+            header('Location: /dashboard');
         }
-        $this->user = new User();
     }
 }

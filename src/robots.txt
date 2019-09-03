@@ -16,3 +16,4 @@ Disallow: /test
 Disallow: /x
 Allow: /
 Allow: /news
+

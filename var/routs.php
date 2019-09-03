@@ -2,8 +2,8 @@
 
 return array(
     // авторизація реєстрація вихід controller
-    'enter' => 'enter/index',
-    'reg' => 'registration/index',
+    'signin' => 'enter/index',
+    'signup' => 'registration/index',
     'out', 'index/out',
 
     // перегляд новин
@@ -16,7 +16,10 @@ return array(
     '/' => 'index/index',
 
     // admin
-    'admin/' => '',
+    'admin' => 'adminPage/index',
+
+    // user
+    'user' => 'adminPage/index',
 
     //test
     'test' => 'test/index',

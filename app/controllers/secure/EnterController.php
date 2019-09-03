@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 
+use Lib\User\User;
+
 class EnterController extends BaseSecureController
 {
     public function __construct()
@@ -12,6 +14,15 @@ class EnterController extends BaseSecureController
 
     public function indexAction()
     {
-        echo $this->user->enterUser($_POST['login'], $_POST['password']);
+        echo $this->twig->render('secure/enter', []);
+    }
+
+    public function authAction()
+    {
+        if(!$_POST){
+            Error::E404();
+        }else{
+            $user = new User();
+        }
     }
 }

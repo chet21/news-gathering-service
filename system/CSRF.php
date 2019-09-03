@@ -13,9 +13,9 @@ use App\Configuration\BaseConfiguration;
 
 class CSRF extends BaseConfiguration
 {
-    static public function token($user_hash)
+    static public function token()
     {
-        $token = sha1($user_hash.self::get('sold'));
+        $token = sha1(date('d-y-m').self::get('sold'));
         return $token;
     }
 }

@@ -17,7 +17,7 @@ class AdminPageController extends BaseAdminController
 
     public function indexAction()
     {
-        echo 'pages Admin';
+        echo $this->twig->render('admin/enter', []);
     }
 
     public function dashboardAction()

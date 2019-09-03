@@ -52,7 +52,8 @@ class ComposerStaticInit5898b39126de691ffcf76a43f60c79e3
 
     public static $classMap = array (
         'App\\Configuration\\BaseConfiguration' => __DIR__ . '/../..' . '/app/configuration/BaseConfiguration.php',
-        'App\\Controllers\\AdminPageController' => __DIR__ . '/../..' . '/app/controllers/admin/index/AdminPageController.php',
+        'App\\Controllers\\AdminPageController' => __DIR__ . '/../..' . '/app/controllers/admin/pages/AdminPageController.php',
+        'App\\Controllers\\BaseAdminController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseAdminController.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseController.php',
         'App\\Controllers\\BaseIndexController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseIndexController.php',
         'App\\Controllers\\BaseSecureController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseSecureController.php',
@@ -66,7 +67,6 @@ class ComposerStaticInit5898b39126de691ffcf76a43f60c79e3
         'App\\Controllers\\SearchController' => __DIR__ . '/../..' . '/app/controllers/index/SearchController.php',
         'App\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/controllers/index/TestController.php',
         'App\\Controllers\\profileController' => __DIR__ . '/../..' . '/app/controllers/user/profileController.php',
-        'BaseAdminController' => __DIR__ . '/../..' . '/app/controllers/BaseController/BaseAdminController.php',
         'BaseMigration' => __DIR__ . '/../..' . '/system/migration/BaseMigration.php',
         'Callback' => __DIR__ . '/../..' . '/lib/phpQuery/phpQuery/Callback.php',
         'CallbackBody' => __DIR__ . '/../..' . '/lib/phpQuery/phpQuery/Callback.php',

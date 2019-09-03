@@ -7,7 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Configuration\\BaseConfiguration' => $baseDir . '/app/configuration/BaseConfiguration.php',
-    'App\\Controllers\\AdminPageController' => $baseDir . '/app/controllers/admin/index/AdminPageController.php',
+    'App\\Controllers\\AdminPageController' => $baseDir . '/app/controllers/admin/pages/AdminPageController.php',
+    'App\\Controllers\\BaseAdminController' => $baseDir . '/app/controllers/BaseController/BaseAdminController.php',
     'App\\Controllers\\BaseController' => $baseDir . '/app/controllers/BaseController/BaseController.php',
     'App\\Controllers\\BaseIndexController' => $baseDir . '/app/controllers/BaseController/BaseIndexController.php',
     'App\\Controllers\\BaseSecureController' => $baseDir . '/app/controllers/BaseController/BaseSecureController.php',
@@ -21,7 +22,6 @@ return array(
     'App\\Controllers\\SearchController' => $baseDir . '/app/controllers/index/SearchController.php',
     'App\\Controllers\\TestController' => $baseDir . '/app/controllers/index/TestController.php',
     'App\\Controllers\\profileController' => $baseDir . '/app/controllers/user/profileController.php',
-    'BaseAdminController' => $baseDir . '/app/controllers/BaseController/BaseAdminController.php',
     'BaseMigration' => $baseDir . '/system/migration/BaseMigration.php',
     'Callback' => $baseDir . '/lib/phpQuery/phpQuery/Callback.php',
     'CallbackBody' => $baseDir . '/lib/phpQuery/phpQuery/Callback.php',
