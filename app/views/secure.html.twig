@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Новини з усіх куточків України. Агрегатор новин, нейбільш авторитетних видавництв України"/>
+
+    <link rel="stylesheet" type="text/css" href="/src/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/style_xs.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="/src/js/secure_function.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>secure</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div style="height: 80px; background: silver"></div>
+            <div style="height: 500px; background: white; border-top: 3px solid black; border-bottom: 3px solid black;">
+                <form id="enter_form">
+                    <input id="csrf" type="text" name="csrf" value="{{  }}" hidden>
+                    <input id="login" type="text" name="login"><br>
+                    <input id="password" type="password" name="password"><br>
+                    <input type="button" onclick="signin()">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    {% block content %}{% endblock %}
+</body>
+</html>

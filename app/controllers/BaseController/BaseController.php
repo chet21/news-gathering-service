@@ -21,8 +21,6 @@ abstract class BaseController
 
     public function __construct()
     {
-//        $this->verification();
-
         $this->options = new BasePackeg();
         $this->lang = new Lang(__DIR__ . '/../../../var/lang/' .$this->options->current_lang().'.php');
         $this->location = new UserLocation();
@@ -34,7 +32,6 @@ abstract class BaseController
         require_once(realpath($_SERVER['DOCUMENT_ROOT'].'/'._SAPE_USER.'/sape.php'));
         $o['charset'] = 'utf-8';
         $sape = new \SAPE_client($o);
-//        var_dump($sape);
 
 
         $this->twig  = new TwigView();
