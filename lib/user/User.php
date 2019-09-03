@@ -21,16 +21,22 @@ class User
     public function enterUser($login, $password)
     {
         $hash = Hash::get();
-        $id = $this->checkUserOriginal($login, $password);
+        $user = $this->checkUserOriginal($login, $password);
 
-        if($id)
+        if($user)
         {
+            $user_id = $user['id'];
+            $user_role = $user['role'];
+
             $_SESSION['login'] = $login;
             $_SESSION['hash'] = $hash;
+            $_SESSION['id'] = $user_id;
+            $_SESSION['role'] = $user_role;
+
             $this->connection
 //                ->prepare("UPDATE user SET hash = :hash WHERE login = :login")
 //                ->execute(array('hash' => $hash, 'login' => $login));
-                ->query("UPDATE user SET hash = '$hash' WHERE id = $id");
+                ->query("UPDATE user SET hash = '$hash' WHERE id = '$user_id'");
             return 1;
         }else{
             return 0;
@@ -47,8 +53,8 @@ class User
         if(!$this->checkUserInform('login', $login))
         {
             $this->connection
-                ->prepare("INSERT INTO user (login, password, mail) VALUE (:login, :password, :mail)")
-                ->execute(array('login' => $login, 'password' => $password, 'mail' => $mail));
+                ->prepare("INSERT INTO user (login, password, mail) VALUE (:login, :password, :mail, :role)")
+                ->execute(array('login' => $login, 'password' => $password, 'mail' => $mail, 'role' => 'user'));
         }
 //        throw new \Exception("enter error");
     }
@@ -69,10 +75,10 @@ class User
         $login  = htmlspecialchars($login);
         $password = md5(htmlspecialchars($password).$this->conf->get('sold'));
         $data = DB::connection()
-            ->query("SELECT id FROM user WHERE login = '$login' AND password = '$password'")
+            ->query("SELECT id, role FROM user WHERE login = '$login' AND password = '$password'")
             ->fetchAll(\PDO::FETCH_ASSOC);
 
-        $res = ($data) ? $data[0]['id'] : false;
+        $res = ($data) ? $data[0] : false;
         return $res;
     }
 }

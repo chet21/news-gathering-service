@@ -16,27 +16,15 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <script src="/src/js/user_function.js"></script>
+    <script src="/src/js/default_function.js"></script>
     <script src="/src/js/secure_function.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>secure</h1>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <div style="height: 80px; background: silver"></div>
-            <div style="height: 500px; background: white; border-top: 3px solid black; border-bottom: 3px solid black;">
-                <form id="enter_form">
-                    <input id="csrf" type="text" name="csrf" value="{{ csrf }}" hidden>
-                    <input id="login" type="text" name="login"><br>
-                    <input id="password" type="password" name="password"><br>
-                    <input id="enter_button" type="button" onclick="signin()">
-                </form>
-                <div id="response_errors"></div>
-            </div>
-        </div>
-    </div>
-</div>
-    {% block content %}{% endblock %}
+{% include 'modul/servises_top.html.twig' %}
+    {% block content %} {% endblock %}
+{% include 'modul/footer.html.twig' %}
+{% include 'modul/copywriter.html.twig' %}
 </body>
 </html>

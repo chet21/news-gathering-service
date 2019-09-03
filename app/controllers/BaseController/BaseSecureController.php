@@ -12,8 +12,6 @@ class BaseSecureController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        if($_SESSION['user_id']){
-            header('Location: /dashboard');
-        }
+
     }
 }

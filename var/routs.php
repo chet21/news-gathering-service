@@ -1,10 +1,11 @@
 <?php
 
 return array(
-    // авторизація реєстрація вихід controller
+    // авторизація реєстрація вихід controller-и
     'signin' => 'enter/index',
+    'signin/request' => 'enter/auth',
     'signup' => 'registration/index',
-    'out', 'index/out',
+    'out', 'out/index',
 
     // перегляд новин
     'news/([0-9]+)' => 'news/one/$1',
@@ -19,7 +20,7 @@ return array(
     'admin' => 'adminPage/index',
 
     // user
-    'user' => 'adminPage/index',
+    'dashboard' => 'profile/dashboard',
 
     //test
     'test' => 'test/index',

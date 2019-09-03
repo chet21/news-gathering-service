@@ -2,7 +2,6 @@ body{
     background: #faf6ea;
 }
 
-
 .menuItemsOn {
     height: auto;
     width: auto;
@@ -29,10 +28,6 @@ body{
 .imgN:hover {
      background-size: 50px;
 }
-
-
-
-
 
 .block_news-pic-shadow {
     position: absolute;
@@ -280,6 +275,17 @@ body{
 .partner_img{
     width: 160px;
     height: 70px;
+}
+
+.user_menu_link{
+    color: white;
+    font-size: 25px;
+    margin: 17px;
+}
+
+.user_menu_link:hover{
+    text-decoration: none;
+    color: #d7d9dc;
 }
 
 

@@ -1,0 +1,23 @@
+{% extends 'user.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-8" style="height: auto; background: #314241; margin-top: 15px;">
+                    <a href="/" class="user_menu_link text">головна</a>
+                    <a href="/dashboard" class="user_menu_link text">моя сторінка</a>
+                    <a href="#" class="user_menu_link text">повідомлення</a>
+                </div>
+                <div class="col-3 justify-content-center" style="height: auto; background: #314241; margin-top: 15px;">
+                    <a href="/" class="user_menu_link text" style="font-size: 20px">налаштування</a>
+                    <span> | </span>
+                    <span class="user_menu_link text" style="font-size: 20px; cursor: pointer" onclick="out()">вихід</span>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="min-height: 400px; border: 1px solid silver; margin-top: 15px; margin-bottom: 15px">
+                <div class="col-11" style="height: 50px; border: 1px solid black"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

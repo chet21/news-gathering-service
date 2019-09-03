@@ -14,8 +14,8 @@ class BaseUserController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        if($this->user_id['role'] !== 'client'){
-            header('Location: /');
+        if(!$_SESSION['hash']){
+            header('Location: /signin');
         }
     }
 }
