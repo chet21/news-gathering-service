@@ -29,3 +29,20 @@ function search_view() {
     // width: 500
     // });
 }
+
+function change_lang(lang_init) {
+    let x = lang_init.match(/[a-z]{2}/);
+    if(x){
+        $.ajax({
+            url: '/lang',
+            method: 'post',
+            data: {'lang': x.input},
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+}
+
+
+
