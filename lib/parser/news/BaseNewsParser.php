@@ -73,8 +73,10 @@ abstract class BaseNewsParser extends BaseParser
 
     protected function clean_text($text)
     {
-        trim(preg_replace('/\'/', '`', $text));
-        preg_replace('/  /', '', $text);
+        $text = trim(preg_replace('/\'/', '`', $text));
+        $text = preg_replace('/  /', '', $text);
+        $text = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $text);
+
 //        preg_replace('/ document.^$}); /', '', $text);
 
         return $text;

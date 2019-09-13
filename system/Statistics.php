@@ -17,7 +17,8 @@ class Statistics
     private $db;
     private $bot_status;
     private $bot_list = [
-            'Googlebot','YandexBot', 'SemrushBot', 'Exabot' , 'Trident'
+            'Googlebot','YandexBot', 'SemrushBot', 'Exabot' , 'Trident',
+            'YandexMetrika', 'AdsBot-Google-Mobile'
     ];
 
     public function __construct()

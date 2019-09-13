@@ -27,14 +27,14 @@
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    {#<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135204278-1"></script>#}
-    {#<script>#}
-        {#window.dataLayer = window.dataLayer || [];#}
-        {#function gtag(){dataLayer.push(arguments);}#}
-        {#gtag('js', new Date());#}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135204278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        {#gtag('config', 'UA-135204278-1');#}
-    {#</script>#}
+        gtag('config', 'UA-135204278-1');
+    </script>
     <script
             async="async"
             src="//cdn-rtb.sape.ru/rtb-b/js/283/2/96283.js"
@@ -80,7 +80,7 @@
 
 {% include 'modul/copywriter.html.twig' %}
 
-<script src="/src/js/function.js"></script>
+<script src="/src/js/default_function.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({

@@ -6,6 +6,7 @@ return array(
     'signin/request' => 'enter/auth',
     'signup' => 'registration/index',
     'out', 'out/index',
+    'lang' => '/index/lang',
 
     // перегляд новин
     'news/([0-9]+)' => 'news/one/$1',

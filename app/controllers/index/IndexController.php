@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use System\ArRed;
 use System\ORM;
 
 class IndexController extends BaseIndexController
@@ -48,7 +49,16 @@ class IndexController extends BaseIndexController
         $not_photo_news = $not_photo_news->run();
 
 
-        echo $this->twig->render('pages/pages', array(
+//        $cache_big = new ArRed(null, 'big');
+//        $res = $cache_big->get();
+//
+////        $cache_small = new ArRed(null, 'small');
+////        $not_photo_news = $cache_small->get();
+//
+//        $cache_no = new ArRed(null, 'no');
+//        $not_photo_news = $cache_no->get();
+
+        echo $this->twig->render('index/index', array(
             'data' => $res,
             'poligon' => $poligon,
             'npn' => $not_photo_news
@@ -63,5 +73,12 @@ class IndexController extends BaseIndexController
     public function support()
     {
 
+    }
+
+    public function langAction()
+    {
+        if(isset($_POST['lang'])){
+            setcookie('lang', 'ru', time()+7777777, '/');
+        }
     }
 }
