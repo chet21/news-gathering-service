@@ -18,41 +18,29 @@ class CacheNews
         $this->cache_parth = __DIR__.'/../../var/cache/new/'.$cat.'_img_news.php';
     }
 
-    public function delete_char($array, $iteration_array = [] )
+    private function delete_char($array)
     {
-
-        foreach ($array as $k => $item){
-            if(!is_array($item)){
-                $res = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $item);
-                $res = preg_replace('/\'/', '`', $res);
-                $iteration_array[$k] = $res;
+        $result = [];
+        foreach ($array as $k => $v){
+            if(!is_array($v)){
+                $value = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $v);
+                $value = preg_replace('/\'/', '`', $value);
+                $result[$k] = $value;
             }else{
-                $this->delete_char($item, $iteration_array[$k]);
+                $result[$k] = $this->delete_char($v);
             }
         }
-
-        return $iteration_array;
+        return $result;
     }
 
     public function create($element, $time_valid)
     {
-//        $element = $this->delete_char($element);
+        $element = $this->delete_char($element);
+
         $text = '';
         $text .= '<?php ' . PHP_EOL;
         $text .= 'return [' . PHP_EOL;
-        $text .= '\'data\' => [' . PHP_EOL;
-
-        if (count($element) > 0){
-            foreach ($element as $k => $item){
-                $item = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $item);
-                $item = preg_replace('/\'/', '`', $item);
-                $json_string = json_encode($item);
-                $text .= '  \''.$k.'\' => \''.$json_string.'\','.  PHP_EOL;
-
-            }
-            $text .= '],' .  PHP_EOL;
-        }
-
+        $text .= '\'data\' => \''.json_encode($element) .'\','. PHP_EOL;
         $text .= '\'time_end\' => \''.(time() + ($time_valid * 60)).'\'';
         $text .= '];';
 
@@ -64,7 +52,7 @@ class CacheNews
         }
     }
 
-    public function time_to_live()
+    public function get_time_live()
     {
         $string = require_once $this->cache_parth;
         $time = $string['time_end'];
@@ -73,15 +61,11 @@ class CacheNews
         return $time;
     }
 
-    public function get()
+    public function get_data()
     {
-        $get_aaray = require_once $this->cache_parth;
-        $result = [];
+        $get_array = require $this->cache_parth;
 
-        foreach ($get_aaray['data'] as $item){
-            $result[] = json_decode($item, true);
-        }
-//        $cache = json_decode($string['data'], true);
+        $result = json_decode($get_array['data'], true);
 
         return $result;
     }

@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Pattern\Facade\CreateBigNewsFacade;
 use Lib\Location\UserLocation;
 use Lib\Packeg\BasePackeg;
 use Lib\Parser\News\NewsParser24Ua;
@@ -22,72 +23,24 @@ use System\Statistics;
 
 class TestController extends BaseIndexController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+    }
 
     public function indexAction()
     {
-        $lock_id = '';
-////
-        $x = new CacheNews('big');
-////
-////        if($x->time_to_live()){
-            $news = new ORM(['news', 'category', 'donor']);
-            $news->select(ORM::LEFT_JOIN);
-            $news->where('news.img != \'\'');
-            $news->sort('desc');
-            $news->limit(6);
-            $res = $news->run();
+        $big_news = new CacheNews('big');
+        $small_news = new CacheNews('small');
+        $not_img_news = new CacheNews('no');
 
-            for ($i = 0; $i <= count($res)-1; $i++){
-                if($i <= count($res)-2){
-                    $lock_id .= 'news.id != '.$res[$i]['news0id'].' && ';
-                }else{
-                    $lock_id .= 'news.id !='.$res[$i]['news0id'];
-                }
-            }
-////
-            $x->create($res, 10);
-////        }
-////
-        $xx = new CacheNews('small');
-////        if($xx->time_to_live()){
-            $nn = new ORM(['news', 'category', 'donor']);
 
-            $poligon = [];
-            foreach ($this->options->site_top_menu(true) as $v){
-                $nn->select(ORM::LEFT_JOIN);
-                $nn->where('news.id_category = '.$nn->wrap_string($v['category0id']).' && '.$lock_id.' && news.img != \'\'');
-                $nn->sort('desc');
-                $nn->limit(3);
-
-                $poligon[$v['category0category']] = $nn->run();
-            }
-//
-//        echo '<pre>';
-//           $xx->create($poligon, 10);
-            $xx->create($poligon, 10);
-//            echo '</pre>';
-//        }
-//
-        $xxx = new CacheNews('no');
-////
-            $not_photo_news = new ORM('news');
-            $not_photo_news->select();
-            $not_photo_news->where('img = \'\'');
-            $not_photo_news->sort('desc');
-            $not_photo_news->limit(20);
-            $not_photo_news = $not_photo_news->run();
-//
-        $xxx->create($not_photo_news, 10);
-//            var_dump($xxx->create_data_element($not_photo_news));
-////
-////        }
-////
-
-//        echo $this->twig->render('index/index', array(
-//            'data' => $x->get(),
-//            'poligon' => $xx->get(),
-////            'npn' => $xxx->get()
-//        ));
+        echo $this->twig->render('index/index', array(
+            'data' => $big_news->get_data(),
+            'poligon' => $small_news->get_data(),
+            'npn' => $not_img_news->get_data()
+        ));
 
     }
 

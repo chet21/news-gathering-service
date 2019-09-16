@@ -1,19 +1,24 @@
 User-agent: Yandex
 Disallow: /admin
-Disallow: /enter
+Disallow: /signin
+Disallow: /signup
 Disallow: /category
 Disallow: /test
 Disallow: /x
 Allow: /
 Allow: /news
+Allow: /category
+
 
 
 User-agent: *
 Disallow: /admin
-Disallow: /enter
-Disallow: /category
+Disallow: /signin
+Disallow: /signup
 Disallow: /test
 Disallow: /x
 Allow: /
 Allow: /news
+Allow: /category
+
 
