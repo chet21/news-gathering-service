@@ -1,4 +1,4 @@
-{% extends "pages.html.twig" %}
+{% extends "index.html.twig" %}
 
 {% block title %}
     {{ news.news0title }}
@@ -78,11 +78,11 @@
         <div class="d-none col-xl-4 d-xl-block col-lg-4 d-lg-block">
             <div class="row">
                 <div class="col-6">
-                    <div class="mirror_off">
+                    <div class="mirror_off" style="margin-left: 10px">
                         {% for item in mirror %}
-                            <div style="margin-bottom: 30px">
-                                <div style="height: 200px; width: 250px; background: url({{ item.news0img }}) center center / cover"></div>
-                                <div style=" width: 250px; font-size: 14px; font-weight: bold">{{ item.news0title }}</div>
+                            <div style="margin-bottom: 20px">
+                                <div style="height: 140px; width: 250px; background: url({{ item.news0img }}) center center / cover"></div>
+                                <div class="text link" style=" width: 250px; font-size: 16px; font-weight: bold; color: #747474">{{ item.news0title }}</div>
                             </div>
 
                             {#<div class="row">#}

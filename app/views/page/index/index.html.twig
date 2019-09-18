@@ -134,14 +134,52 @@
 {% endblock %}
 
 {% block right_block %}
-    {#{% if npn not empty %}#}
-        {% for item in npn %}
-            <div class="row" style="margin-top: 10px; margin-bottom: 10px; color: #747474;">
-                <div class="col-2 text" style="font-weight: bold">{{ item.news0time|date("H:i") }}</div>
-                <div class="col-10 text" style=" line-height: 18px">
-                    <a href="/news/{{ item.news0id }}" class="link" style="color: #747474; text-decoration: none;  ">{{ item.news0title }}</a>
+
+
+    {% set today = "now"|date('d') %}
+    {% set yesterday = "yesterday"|date('d') %}
+
+    {#{% for item in npn %}#}
+        {#{% if item.news0time|date('d') == today %}#}
+            {#<div style="width: 100%; border-bottom: 1px solid #747474; color: #747474">Сьогодні</div>#}
+        {#{% elseif item.news0time|date('d') == yesterday %}#}
+            {#<div style="width: 100%; border-bottom: 1px solid #747474; color: #747474">Вчора</div>#}
+        {#{% endif %}#}
+    {#{% endfor %}#}
+
+    {% for key, item in npn %}
+        {% if key == today %}
+            <div class="text link" style="width: 100%; border-bottom: 2px solid #747474; color: #747474; font-size: 18px">Сьогодні</div>
+            {% for val in item %}
+                <div class="row" style="margin-top: 10px; margin-bottom: 10px; color: #747474;">
+                    <div class="col-2 text" style="font-weight: bold">{{ val.news0time|date("H:i") }}</div>
+                    <div class="col-10 text" style=" line-height: 18px">
+                        <a href="/news/{{ val.news0id }}" class="link" style="color: #747474; text-decoration: none;  ">{{ val.news0title }}</a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    {#{% endif %}#}
+            {% endfor %}
+        {% endif %}
+        {% if key == yesterday %}
+            <div class="text link" style="width: 100%; border-bottom: 2px solid #747474; color: #747474; font-size: 18px">Вчора</div>
+            {% for val in item %}
+                <div class="row" style="margin-top: 10px; margin-bottom: 10px; color: #747474;">
+                    <div class="col-2 text" style="font-weight: bold">{{ val.news0time|date("H:i") }}</div>
+                    <div class="col-10 text" style=" line-height: 18px">
+                        <a href="/news/{{ val.news0id }}" class="link" style="color: #747474; text-decoration: none;  ">{{ val.news0title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if key != today and key != yesterday %}
+            <div class="text link" style="width: 100%; border-bottom: 2px solid #747474; color: #747474; font-size: 18px">{{ item[0]['news0time']|date("d-m") }}</div>
+            {% for val in item %}
+                <div class="row" style="margin-top: 10px; margin-bottom: 10px; color: #747474;">
+                    <div class="col-2 text" style="font-weight: bold">{{ val.news0time|date("H:i") }}</div>
+                    <div class="col-10 text" style=" line-height: 18px">
+                        <a href="/news/{{ val.news0id }}" class="link" style="color: #747474; text-decoration: none;  ">{{ val.news0title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
 {% endblock %}
