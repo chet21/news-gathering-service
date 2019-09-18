@@ -60,9 +60,17 @@ class CacheController extends BaseController
         $not_photo_news->select();
         $not_photo_news->where('img = \'\'');
         $not_photo_news->sort('desc');
-        $not_photo_news->limit(20);
+        $not_photo_news->limit(30);
         $not_photo_news = $not_photo_news->run();
 
-        $not_news->create($not_photo_news, 10);
+
+        $sort = [];
+        foreach ($not_photo_news as $item){
+            $date = date('d', strtotime($item['news0time']));
+            $sort[$date][] =  $item;
+        }
+
+        $not_news->create($sort, 10);
+
     }
 }

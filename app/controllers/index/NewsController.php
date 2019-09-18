@@ -38,10 +38,9 @@ class NewsController extends BaseIndexController
         }
 
         $this->news->select(ORM::LEFT_JOIN);
-        $this->news->where('news.id < '.$id[0].' && news.id_category = '.$this->news->wrap_string($news[0]['news0id_category']));
+        $this->news->where('news.id < '.$id[0].' && news.id_category = '.$this->news->wrap_string($news[0]['news0id_category']).' && news.img != \'\'');
         $this->news->sort('desc');
-        $this->news->limit(3);
-
+        $this->news->limit(5);
 
         $ls_news = $this->news->run();
 
