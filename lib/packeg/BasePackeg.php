@@ -57,6 +57,8 @@ class BasePackeg
         $menu->order_by('position');
         $menu = $menu->run();
 
+//        var_dump($menu);
+
         if($fl !== true){
             foreach ($menu as $k => $item){
                 $menu[$k] = ['category' => $item['category0category'], 'id' => '/category/'.$item['category0id']];

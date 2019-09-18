@@ -4,6 +4,8 @@
 namespace System;
 
 
+use Couchbase\Exception;
+
 class ORM extends DB
 {
     private $table;
@@ -49,6 +51,7 @@ class ORM extends DB
         }elseif (is_string($this->table)){
             $q .= DB::get_alias($this->table);
         }
+
 
         $this->query = 'SELECT '.trim($q, ', ').' FROM ';
 
@@ -96,11 +99,16 @@ class ORM extends DB
     public function update($data)
     {
         $q = '';
-//        foreach ($data as $items) {
-        foreach ($data as $k => $item){
-            $q .= $k.' = '.$item.', ';
+
+        if(is_array($data)){
+            foreach ($data as $k => $item){
+                $q .= $k.' = '.$this->wrap_string($item).', ';
+            }
+        }elseif (is_string($data)){
+            $q .= $data;
+        }else{
+            throw new Exception('Data to run update method must be an array or string type');
         }
-//        }
 
         $q ='UPDATE '.$this->table.' SET '.rtrim($q, ', ');
         $this->query .= $q;
@@ -178,6 +186,11 @@ class ORM extends DB
     public function wrap_string($string)
     {
         return '\''.$string.'\'';
+    }
+
+    public function wrap_locked_word($string)
+    {
+        return '`'.$string.'`';
     }
 
     public function order_by($param)

@@ -31,6 +31,10 @@ return array(
 
     // Search
 
-    'search' => 'search/index'
+    'search' => 'search/index',
+
+    // Cache
+
+    'c1' => 'cache/news'
 
 );

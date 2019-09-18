@@ -27,19 +27,51 @@ class TestController extends BaseIndexController
     {
         parent::__construct();
 
+
     }
 
     public function indexAction()
     {
+
+//        $news = new ORM(['news', 'category', 'donor']);
+//        $news->select(ORM::LEFT_JOIN);
+//        $news->where('news.img != \'\'');
+//        $news->sort('desc');
+//        $news->limit(6);
+//        $ready_big_news = $news->run();
+//
+//
+//
+//        foreach ($ready_big_news as $item){
+//            $lock_news = new ORM('news');
+//            $lock_news->update(['locked' => 'on']);
+//            $lock_news->where('news.id = '.$item['news0id']);
+//            echo $lock_news->query;
+//            echo '<br>';
+//            $lock_news->run();
+//        }
+//
+//
+//        $nn = new ORM(['news', 'category', 'donor']);
+//        $poligon = [];
+//        foreach ($this->options->site_top_menu(true) as $v){
+//            $nn->select(ORM::LEFT_JOIN);
+//            $nn->where('news.id_category = '.$nn->wrap_string($v['category0id']).' && news.locked = \'off\' && news.img != \'\'');
+//            $nn->sort('desc');
+//            $nn->limit(1);
+//            $poligon[$v['category0category']] = $nn->run();
+//        }
+
+
         $big_news = new CacheNews('big');
         $small_news = new CacheNews('small');
-        $not_img_news = new CacheNews('no');
+        $no_photo_news = new CacheNews('no');
 
 
         echo $this->twig->render('index/index', array(
             'data' => $big_news->get_data(),
             'poligon' => $small_news->get_data(),
-            'npn' => $not_img_news->get_data()
+            'npn' => $no_photo_news->get_data()
         ));
 
     }
