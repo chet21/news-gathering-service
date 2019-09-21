@@ -82,7 +82,10 @@
                         {% for item in mirror %}
                             <div style="margin-bottom: 15px">
                                 <div style="height: 150px; width: 250px; background: url({{ item.news0img }}) center center / cover; margin-left: 10px"></div>
-                                <div class="text link" style=" width: 250px; font-size: 15px; font-weight: bold; margin-left: 10px; color: #747481;">{{ item.news0title }}</div>
+                                <div style=" width: 250px; font-size: 15px; font-weight: bold; margin-left: 10px; color: #747481;">
+                                    <a class="text link" href="/news/{{ item.news0id }}" style="color: #747481; text-decoration: none;
+    cursor: pointer;">{{ item.news0title }}</a>
+                                </div>
                             </div>
 
                             {#<div class="row">#}
