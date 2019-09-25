@@ -6,6 +6,7 @@ use \System\Router;
 use \System\Statistics;
 
 session_start();
+header("Cache-Control: max-age=31536000");
 
 //if(is_dir('/install')){
 //    require_once __DIR__.'/../install/pages.php';

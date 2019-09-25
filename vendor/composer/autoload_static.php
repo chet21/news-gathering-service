@@ -100,6 +100,7 @@ class ComposerStaticInit5898b39126de691ffcf76a43f60c79e3
         'Lib\\Parser\\ProxyParser2' => __DIR__ . '/../..' . '/lib/parser/proxy/ProxyParser2.php',
         'Lib\\User\\User' => __DIR__ . '/../..' . '/lib/user/User.php',
         'Migration' => __DIR__ . '/../..' . '/system/migration/Migration.php',
+        'System\\ArRed' => __DIR__ . '/../..' . '/system/ArRed.php',
         'System\\CSRF' => __DIR__ . '/../..' . '/system/CSRF.php',
         'System\\Cache\\News\\CacheNews' => __DIR__ . '/../..' . '/system/cache/CacheNews.php',
         'System\\DB' => __DIR__ . '/../..' . '/system/DB.php',

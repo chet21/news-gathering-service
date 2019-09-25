@@ -5,3 +5,9 @@ RewriteRule .* index.php [L]
 
 RemoveHandler .html .htm
 AddType application/x-httpd-php .php .htm .html .phtml
+
+<ifModule mod_headers.c>
+   <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
+        Header set Cache-Control "max-age=2592000"
+   </FilesMatch>
+</ifModule>

@@ -7,3 +7,4 @@ RewriteRule (.*) src/$1 [L]
 
 RemoveHandler .html .htm
 AddType application/x-httpd-php .php .htm .html .phtml
+

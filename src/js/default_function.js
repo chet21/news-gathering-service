@@ -3,7 +3,9 @@
         let y = window.scrollY;                // прокрутка в px
         let f = $(document).height();          // высота всей страницы
         let inn = window.innerHeight;          // высота видимой области
-        if(y > 345){
+        let content_h = $('#content').height();
+        console.log(content_h);
+        if(y > 350 && (y+inn) < content_h){
             // console.log('scroll - ' + y);
             // console.log('hei - ' + inn);
             // console.log('all - ' + f);
@@ -14,10 +16,14 @@
             }else{
                 $('div > .mirror_b').removeClass('mirror_b').addClass('mirror_on');
             }
-        }else{
+        }
+        else if(y < 350){
             $('div > .mirror_on').removeClass('mirror_on').addClass('mirror_off');
         }
-        // console.log(y)
+        else if((y+inn) > content_h){
+            $('div > .mirror_on').removeClass('mirror_on').addClass('mirror_off');
+        }
+
     });
 }());
 

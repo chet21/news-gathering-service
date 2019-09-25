@@ -55,6 +55,7 @@ return array(
     'Lib\\Parser\\ProxyParser2' => $baseDir . '/lib/parser/proxy/ProxyParser2.php',
     'Lib\\User\\User' => $baseDir . '/lib/user/User.php',
     'Migration' => $baseDir . '/system/migration/Migration.php',
+    'System\\ArRed' => $baseDir . '/system/ArRed.php',
     'System\\CSRF' => $baseDir . '/system/CSRF.php',
     'System\\Cache\\News\\CacheNews' => $baseDir . '/system/cache/CacheNews.php',
     'System\\DB' => $baseDir . '/system/DB.php',
