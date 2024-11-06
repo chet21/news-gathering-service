@@ -10,7 +10,7 @@
 ,
   "require": {
     "php": ">=5.5.9",
-    "twig/twig": "1.x-dev",
+    "twig/twig": "3.11.2",
     "gumlet/php-image-resize": "1.8.*"
   }
 }
